@@ -100,18 +100,8 @@ class DetailArticleView(DetailView):
         result['comments'] = self.object.comments.order_by('-created_at')
         return result
 
-# class LikeArticleViev(LoginRequiredMixin, View):
-#
-#     def get(self, request, pk,  *args, **kwargs):
-#         article = get_object_or_404(Article, pk=pk)
-#         if request.user in article.like_users.all():
-#             article.like_users.remove(request.user)
-#         else:
-#             article.like_users.add(request.user)
-#         return HttpResponseRedirect(self.request.GET.get('next', reverse("webapp:index")))
 
-
-class LikeArticleViev(LoginRequiredMixin, View):
+class LikeArticleView(LoginRequiredMixin, View):
 
     def get(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Article, pk=pk)
