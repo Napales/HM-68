@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
@@ -100,14 +100,26 @@ class DetailArticleView(DetailView):
         result['comments'] = self.object.comments.order_by('-created_at')
         return result
 
+# class LikeArticleViev(LoginRequiredMixin, View):
+#
+#     def get(self, request, pk,  *args, **kwargs):
+#         article = get_object_or_404(Article, pk=pk)
+#         if request.user in article.like_users.all():
+#             article.like_users.remove(request.user)
+#         else:
+#             article.like_users.add(request.user)
+#         return HttpResponseRedirect(self.request.GET.get('next', reverse("webapp:index")))
+
+
 class LikeArticleViev(LoginRequiredMixin, View):
 
-    def get(self, request, pk,  *args, **kwargs):
+    def get(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Article, pk=pk)
         if request.user in article.like_users.all():
             article.like_users.remove(request.user)
+            like = False
         else:
             article.like_users.add(request.user)
-            self.request.GET.get('next')
-        return HttpResponseRedirect(self.request.GET.get('next', reverse("webapp:index")))
+            like = True
+        return JsonResponse({'like': like, 'likes_count': article.like_users.count()})
 
