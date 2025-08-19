@@ -27,7 +27,7 @@
         <p>Автор - {{ article.author }}</p>
         <p>Дата создания - {{ article.created_at }} </p>
         <p>Статус - {{ article.get_status_display }} </p>
-        {% include "partial/post_like.html" %}
+        {% include "partial/article_like.html" %}
         <hr/>
         <h5>Tags</h5>
         {% for tag in article.tags.all %}
@@ -38,7 +38,7 @@
         {% for comment in comments %}
             <div class="card">
                 <p>{{ comment.text }}</p>
-                {% include "partial/post_like.html" %}
+                {% include "partial/article_like.html" %}
                 <a href="{% url 'webapp:comment-update' comment.pk %}">Update</a>
                 <a href="{% url 'webapp:comment-delete' comment.pk %}">Delete</a>
             
