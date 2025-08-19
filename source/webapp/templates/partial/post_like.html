@@ -1,0 +1,12 @@
+<div class="post-actions py-2">
+{#    {% if request.user.is_authenticated %}#}
+        {#        <a href="{% url 'webapp:post_like' post.pk %}?next={{ request.path }}">#}
+        {#            {% if request.user not in post.like_users.all %}#}
+        <span class="post-like-btn me-2"><i class="bi bi-heart"></i></span>
+        {#            {% else %}#}
+        <span class="post-like-btn me-2"><i class="bi bi-heart-fill"></i></span>
+        {#            {% endif %}#}
+        {#        </a>#}
+{#    {% endif %}#}
+{#    <span class="post-likes font-weight-bold">{{ post.like_users.count }}</span>#}
+</div>
