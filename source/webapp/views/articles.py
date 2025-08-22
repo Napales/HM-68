@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
 from django.views import View
@@ -112,4 +112,7 @@ class LikeArticleView(LoginRequiredMixin, View):
             article.like_users.add(request.user)
             like = True
         return JsonResponse({'like': like, 'likes_count': article.like_users.count()})
+
+def sec_index(request):
+    return render(request,  'second_index.html')
 

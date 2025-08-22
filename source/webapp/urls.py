@@ -1,14 +1,15 @@
 from django.urls import path
 
 from webapp.views import UpdateArticleView, DeleteArticleView, ArticleListView, CreateArticleView, DetailArticleView
-from webapp.views.articles import LikeArticleView
+from webapp.views.articles import LikeArticleView, sec_index
 from webapp.views.comments import CreateCommentView, UpdateCommentView, DeleteCommentView, LikeCommentView
 
 app_name = 'webapp'
 
 #webapp:index
 urlpatterns = [
-    path('', ArticleListView.as_view(), name='index'),
+    path('sec/', ArticleListView.as_view(), name='index'),
+    path('', sec_index, name='second_index'),
     path('add-article/', CreateArticleView.as_view(), name='add-article'),
     path('article/<int:pk>/', DetailArticleView.as_view(), name='article-detail'),
     path('article/<int:pk>/update/', UpdateArticleView.as_view(), name='article-update'),

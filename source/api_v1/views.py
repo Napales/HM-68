@@ -1,5 +1,4 @@
 import json
-
 from django.http import HttpResponseNotAllowed, HttpResponse, JsonResponse
 
 from django.views.decorators.csrf import ensure_csrf_cookie
