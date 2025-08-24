@@ -21,6 +21,7 @@ from django.urls import path, include
 
 api_urls = [
     path('v1/', include('api_v1.urls')),
+    path('v2/', include('api_v2.urls')),
 ]
 
 urlpatterns = [
