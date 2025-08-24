@@ -18,8 +18,6 @@ class Article(BaseCreateUpdateModel):
         verbose_name='Теги',
         related_name='articles',
         blank=True,
-        through='webapp.ArticleTag',
-        through_fields=("article", "tag"),
     )
 
     def __str__(self):
